@@ -1,5 +1,5 @@
 #This is an example webapp.io configuration for Docker!
-FROM vm/ubuntu:18.04
+FROM vm/ubuntu:20.04
 
 # To note: Layerfiles create entire VMs, *not* containers!
 
@@ -18,5 +18,5 @@ RUN apt-get update && \
 COPY . .
 
 RUN docker build -t image .
-RUN docker run -d -p 3000:8080 -v ollama:/root/.ollama -v open-webui:/app/backend/data --name open-webui --restart always ghcr.io/open-webui/open-webui:ollama
+RUN docker run -d -p 3000:8080 -v ollama:/root/.ollama -v open-webui:/app/backend/data --net=host --name open-webui --restart always ghcr.io/open-webui/open-webui:ollama
 EXPOSE WEBSITE http://localhost:3000
