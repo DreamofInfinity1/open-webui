@@ -14,13 +14,11 @@ RUN apt-get update && \
     apt-get update && \
     apt-get install docker-ce docker-ce-cli containerd.io
 
+RUN curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
+RUN sudo apt-get install -y nodejs
+RUN sudo npm install npm@latest -g
 # copy files from the repository into this staging server
 COPY . .
-RUN curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
-​
-RUN sudo apt-get install -y nodejs
-​
-RUN sudo npm install npm@latest -g
 RUN docker build -t image .
 RUN docker run -d -p 3000:8080 -v ollama:/root/.ollama -v open-webui:/app/backend/data --name open-webui --restart always ghcr.io/open-webui/open-webui:ollama
 EXPOSE WEBSITE http://localhost:3000
