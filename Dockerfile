@@ -27,7 +27,6 @@ ARG BUILD_HASH
 WORKDIR /app
 
 COPY package.json package-lock.json ./
-RUN npm config set cache ""
 RUN npm ci
 
 COPY . .
