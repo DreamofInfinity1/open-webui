@@ -19,4 +19,6 @@ COPY . .
 
 #RUN docker build -t image .
 RUN docker run -d -p 3000:8080 -e OPENAI_API_KEY=your_secret_key -v open-webui:/app/backend/data --name open-webui --restart always ghcr.io/open-webui/open-webui:v0.4.8
+SECRET ENV ENABLE_REALTIME_CHAT_SAVE
+RUN echo "secret is: $ENABLE_REALTIME_CHAT_SAVE"
 EXPOSE WEBSITE http://localhost:3000
