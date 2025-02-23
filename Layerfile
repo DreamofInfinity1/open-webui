@@ -17,7 +17,7 @@ RUN apt-get update && \
 # copy files from the repository into this staging server
 COPY . .
 
-RUN docker run -d -p 3000:8080  -v open-webui:/app/backend/data  --restart always ghcr.io/open-webui/open-webui:main
+RUN docker run -d -p 3000:8080  -v open-webui:/app/backend/data  --restart always ghcr.io/open-webui/open-webui:latest
 SECRET ENV ENABLE_REALTIME_CHAT_SAVE
 RUN echo "secret is: $ENABLE_REALTIME_CHAT_SAVE"
 EXPOSE WEBSITE http://localhost:3000
